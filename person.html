@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Person: LaunchMeet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/basic.css">
+<link rel="stylesheet" href="css/eli_styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="project_data.js"></script>
+<script type="text/javascript">
+    function fill_data() {
+      person_name = /name=(.*)/.exec(window.location.search)[1]
+      person_data = people[person_name]
+      $('.full_name').text(person_data['full_name'])
+      $('.tag').text(person_data['tag'])
+      $('.profile_img').attr('src', person_data['profile_img'])
+      $('.looking_for').text(person_data['looking_for'])
+      $('.skill_set').text(person_data['skill_set'])
+    }
+
+    $(function(){
+      fill_data();
+    });
+  </script>
+</head>
+<body>
+<div id="container">
+<h1>LaunchMeet</h1>
+<h3>Profile</h3>
+
+  <h2 class="full_name"></h2>
+  <img class='profile_img'>
+  <p class="tag"></p>
+  <p class="lead_in">Looking for:</p>
+  <p class="looking_for"></p>
+  <p class="lead_in">Skill set:</p>
+  <p class="skill_set"></p>
+
+<form id="profile_form" class="" method="get" action="invited_success.html">
+
+	<input type="hidden" name="form_id" value="0">
+			    
+	<input id="saveForm" class="button_text" type="submit" name="submit" value="Invite to Project">
+
+</form>
+
+</div>
+</body>
+</html>

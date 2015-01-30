@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Project: LaunchMeet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/basic.css">
+<link rel="stylesheet" href="css/eli_styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="project_data.js"></script>
+<script type="text/javascript">
+    function fill_data() {
+      project_name = /name=(.*)/.exec(window.location.search)[1]
+      project_data = projects[project_name]
+      person_data = people[project_data.created_by]
+      $('.title').text(project_data['title'])
+      $('.brief').text(project_data['brief'])
+      $('.descrip').text(project_data['descrip'])
+      var person_link = "person.html?name=" + project_data.created_by
+      $('.profile_link').attr('href', person_link)
+      $('.profile_img').attr('src', person_data['profile_img'])
+    }
+
+    $(function(){
+      fill_data();
+    });
+  </script>
+</head>
+<body>
+<div id="container">
+<h1>LaunchMeet</h1>
+<h3>Project</h3>
+
+  <h2 class="title"></h2>
+  <div>
+    <p class="brief"></p>
+    <p class="descrip"></p>
+    <p><a class="creator profile_link">View profile</a></p>
+    <img class='profile_img'>
+  </div>
+
+<form id="profile_form" class="" method="get" action="joined_success.html">
+
+	<input type="hidden" name="form_id" value="0">
+			    
+	<input id="saveForm" class="button_text" type="submit" name="submit" value="Join Project">
+
+</form>
+
+
+</div>
+</body>
+</html>

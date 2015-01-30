@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>View Pitches: LaunchMeet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/basic.css">
+<link rel="stylesheet" href="css/eli_styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="project_data.js"></script>
+<script type="text/javascript">
+    function create_projects() {
+      for (project_name in projects) {
+        project_data = projects[project_name];
+
+        project_div = $('.project.template').clone();
+        project_div.find('.brief').text(project_data['brief']);
+        project_link = "project.html?name=" + project_name
+        project_div.find('.project_link').attr('href', project_link);
+        project_div.removeClass('template');
+        $('.content').append(project_div);
+      }
+    }
+    function bind_reject_buttons() {
+      $('.button.reject').click(function(){
+        $(this).parent().slideUp();
+        return false;
+      })
+    }
+    $(function(){
+      create_projects()
+      bind_reject_buttons()
+    });
+</script>
+</head>
+<body>
+<div id="container">
+<h1>LaunchMeet</h1>
+<h2>Accept or Reject</h2>
+
+<div class="content">
+    <div class="project template">
+      <p class='brief'>We're creating an infographic about money in politics</p>
+      <a href="#" class='button reject'>X</a>
+      <a href="#" class='button accept project_link'>Y</a>
+    </div>
+</div>
+
+</div>
+</body>
+</html>
